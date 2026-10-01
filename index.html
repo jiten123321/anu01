@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ecd1cd">
-<title>Pink Lilies, Ladoo</title>
+<title>Pink Lilies, Anu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Parisienne&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap">
 <style>
@@ -28,7 +28,9 @@
 
   .stage{position:relative;width:min(100%, 620px, calc(76svh * 1100 / 1174));justify-self:center;aspect-ratio:1100/1174;touch-action:manipulation;user-select:none;-webkit-user-select:none;}
   .stage img{position:absolute;inset:0;width:100%;height:100%;display:block;
-    opacity:0;}
+    opacity:0;
+    -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+            mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);}
   body.open .stage img{animation:bloom 2s cubic-bezier(.2,.7,.2,1) .35s both;}
   @keyframes bloom{0%{opacity:0;transform:scale(.86) translateY(24px);filter:blur(10px) saturate(.6)}60%{filter:blur(0) saturate(1.05)}100%{opacity:1;transform:none;filter:none}}
   body.open header,body.open .final{animation:rise 1.2s ease both;}
@@ -106,7 +108,7 @@
       <path d="M40 60 C30 52 29 36 36 20 M40 60 C50 52 52 38 46 22" stroke="#b0306a" stroke-width="1.4" fill="none" opacity=".6"/>
       <path d="M40 62 C30 64 24 58 22 50 C30 54 36 56 40 56 C44 56 50 54 58 50 C56 58 50 64 40 62Z" fill="#4f7a3a"/>
     </svg>
-    <h2 class="hey">Hey Ladoo</h2>
+    <h2 class="hey">Hey Anu</h2>
     <p>I have something for you.</p>
     <button class="open-btn" id="openBtn" type="button">Open your flowers</button>
     <small>Tap to open</small>
@@ -115,7 +117,7 @@
 <canvas id="petals" aria-hidden="true"></canvas>
 <main>
   <header>
-    <div class="eyebrow">for my Ladoo</div>
+    <div class="eyebrow">for my Anu</div>
     <h1>Pink lilies</h1>
     <p class="intro">Soft, bright, and a little bit dramatic. Just like someone I know. Rest well today, I'm always right here.</p>
   </header>
@@ -139,7 +141,7 @@
     setTimeout(()=>{welcome.hidden=true;},1100);
   });
 
-  /* falling rose petals */
+  /* falling lily petals */
   const cv=document.getElementById('petals'),c=cv.getContext('2d');let W,H,ps=[];
   function mk(top){return{x:Math.random()*W,y:top?-30:Math.random()*H,s:7+Math.random()*9,vy:.45+Math.random()*.7,sw:Math.random()*6.28,sws:.01+Math.random()*.015,
     rot:Math.random()*6.28,vr:(Math.random()-.5)*.03,dots:Array.from({length:5},()=>[(Math.random()-.5)*.5,Math.random()*.9-.4,Math.random()]),flip:Math.random()*6.28,vf:.02+Math.random()*.03,hue:Math.random()};}
@@ -164,7 +166,7 @@
     }
     if(!reduce) requestAnimationFrame(tick);
   }
-  size();addEventListener('resize',size);requestAnimationFrame(tick);
+  size();addEventListener('resize',()=>{size();if(reduce)tick();});requestAnimationFrame(tick);
 })();
 </script>
 </body>
